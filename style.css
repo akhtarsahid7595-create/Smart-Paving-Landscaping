@@ -365,13 +365,23 @@ nav.scrolled {
 /* Gallery */
 .gallery-grid {
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 300px);
+    grid-auto-rows: 300px;
 }
 
 .gallery-item {
     position: relative;
     overflow: hidden;
     border-radius: var(--border-radius);
+    box-shadow: var(--shadow-premium);
+    background-color: var(--bg-surface);
+}
+
+.gallery-item.span-2 {
+    grid-column: span 2;
+}
+
+.gallery-item.row-2 {
+    grid-row: span 2;
 }
 
 .gallery-item img {
@@ -379,26 +389,42 @@ nav.scrolled {
     height: 100%;
     object-fit: cover;
     transition: var(--transition);
+    filter: brightness(0.9);
 }
 
 .gallery-item:hover img {
-    transform: scale(1.1);
+    transform: scale(1.05);
+    filter: brightness(1.1);
 }
 
 .gallery-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 50%, transparent 100%);
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     padding: 30px;
     opacity: 0;
+    transform: translateY(20px);
     transition: var(--transition);
 }
 
 .gallery-item:hover .gallery-overlay {
     opacity: 1;
+    transform: translateY(0);
+}
+
+.gallery-overlay h4 {
+    color: var(--primary);
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.gallery-overlay p {
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 500;
 }
 
 /* Footer CTAs */
@@ -487,7 +513,13 @@ nav.scrolled {
     .trust-inner { flex-direction: column; gap: 15px; text-align: center; }
     .trust-item { justify-content: center; }
     .split-section { grid-template-columns: 1fr; gap: 40px; }
-    .gallery-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+    .gallery-grid { 
+        grid-template-columns: 1fr; 
+        grid-auto-rows: 250px; 
+        gap: 15px;
+    }
+    .gallery-item.span-2 { grid-column: span 1; }
+    .gallery-item.row-2 { grid-row: span 1; }
     .mobile-cta-bar { display: flex; gap: 10px; }
     body { padding-bottom: 80px; }
 }
@@ -502,4 +534,135 @@ nav.scrolled {
 .reveal.active {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* Hidden Gallery Items */
+.hidden-gallery-item {
+    display: none;
+}
+
+.hidden-gallery-item.show {
+    display: block;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Stats Section */
+.stat-number {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1;
+    margin-bottom: 10px;
+}
+
+.stat-number::after {
+    content: '+';
+    color: var(--primary);
+    font-size: 2rem;
+    margin-left: 5px;
+}
+
+/* Lightbox */
+.lightbox {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    padding-top: 50px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+}
+
+.lightbox-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 1000px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-premium);
+    animation: zoom 0.6s;
+}
+
+@keyframes zoom {
+    from { transform: scale(0.5); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 30px;
+    right: 50px;
+    color: #f1f1f1;
+    font-size: 60px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+    z-index: 10000;
+}
+
+.lightbox-close:hover {
+    color: var(--primary);
+    transform: scale(1.1);
+}
+
+#lightbox-caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 1000px;
+    text-align: center;
+    color: #ccc;
+    padding: 20px 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+/* Floating WhatsApp Button (Desktop) */
+.floating-whatsapp {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    width: 70px;
+    height: 70px;
+    background-color: #25D366;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 35px;
+    box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+    z-index: 1500;
+    transition: var(--transition);
+}
+
+.floating-whatsapp:hover {
+    transform: scale(1.1) translateY(-5px);
+    background-color: #20BA5A;
+}
+
+@media (max-width: 768px) {
+    .floating-whatsapp {
+        display: none; /* Already have mobile bar */
+    }
+    
+    .lightbox-content {
+        width: 95%;
+    }
+    
+    .lightbox-close {
+        top: 15px;
+        right: 25px;
+        font-size: 40px;
+    }
 }

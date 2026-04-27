@@ -52,4 +52,95 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typeof lucide !== 'undefined') {
         lucide.createIcons();
     }
+
+    // 5. View More Projects
+    const viewMoreBtn = document.getElementById('view-more-btn');
+    const hiddenItems = document.querySelectorAll('.hidden-gallery-item');
+    
+    if (viewMoreBtn) {
+        viewMoreBtn.addEventListener('click', () => {
+            hiddenItems.forEach(item => {
+                item.classList.add('show');
+                // Re-observe for reveal animations
+                revealObserver.observe(item);
+            });
+            viewMoreBtn.style.display = 'none';
+        });
+    }
+
+    // 6. Lightbox Functionality
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    const lightboxClose = document.querySelector('.lightbox-close');
+    const galleryImages = document.querySelectorAll('.gallery-item img');
+
+    galleryImages.forEach(img => {
+        img.addEventListener('click', () => {
+            lightbox.style.display = 'block';
+            lightboxImg.src = img.src;
+            const caption = img.parentElement.querySelector('h4').innerText;
+            const subCaption = img.parentElement.querySelector('p').innerText;
+            lightboxCaption.innerHTML = `${caption} <br> <span style="font-size: 0.9rem; font-weight: 400; color: #aaa;">${subCaption}</span>`;
+            document.body.style.overflow = 'hidden'; // Prevent scroll
+        });
+    });
+
+    if (lightboxClose) {
+        lightboxClose.addEventListener('click', () => {
+            lightbox.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+    }
+
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+            lightbox.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    });
+
+    // 7. Stat Counter Animation
+    const counters = document.querySelectorAll('.stat-number');
+    const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const target = +entry.target.getAttribute('data-target');
+                const count = +entry.target.innerText;
+                const increment = target / 50;
+
+                const updateCount = () => {
+                    const current = +entry.target.innerText;
+                    if (current < target) {
+                        entry.target.innerText = Math.ceil(current + increment);
+                        setTimeout(updateCount, 40);
+                    } else {
+                        entry.target.innerText = target;
+                    }
+                };
+                updateCount();
+                counterObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 1 });
+
+    counters.forEach(counter => counterObserver.observe(counter));
+
+    // 8. Floating WhatsApp (Dynamic Creation for better control)
+    const waFloat = document.createElement('a');
+    waFloat.href = "https://wa.me/260973316286";
+    waFloat.className = "floating-whatsapp desktop-only";
+    waFloat.innerHTML = '<i data-lucide="message-circle"></i>';
+    waFloat.target = "_blank";
+    document.body.appendChild(waFloat);
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+
+    // 9. Hero Parallax
+    const hero = document.querySelector('.hero');
+    window.addEventListener('scroll', () => {
+        const offset = window.pageYOffset;
+        if (hero) {
+            hero.style.backgroundPositionY = offset * 0.5 + 'px';
+        }
+    });
 });
