@@ -76,6 +76,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const galleryImages = document.querySelectorAll('.gallery-item img');
 
     galleryImages.forEach(img => {
+        // Stop shimmer when loaded
+        if (img.complete) {
+            img.style.opacity = '1';
+            img.parentElement.style.animation = 'none';
+        } else {
+            img.addEventListener('load', () => {
+                img.style.opacity = '1';
+                img.parentElement.style.animation = 'none';
+            });
+        }
+
         img.addEventListener('click', () => {
             lightbox.style.display = 'block';
             lightboxImg.src = img.src;

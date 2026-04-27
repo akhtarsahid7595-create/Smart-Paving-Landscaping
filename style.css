@@ -373,7 +373,14 @@ nav.scrolled {
     overflow: hidden;
     border-radius: var(--border-radius);
     box-shadow: var(--shadow-premium);
-    background-color: var(--bg-surface);
+    background: linear-gradient(90deg, var(--bg-surface) 25%, #222 50%, var(--bg-surface) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite linear;
+}
+
+@keyframes shimmer {
+    from { background-position: 200% 0; }
+    to { background-position: -200% 0; }
 }
 
 .gallery-item.span-2 {
@@ -390,6 +397,7 @@ nav.scrolled {
     object-fit: cover;
     transition: var(--transition);
     filter: brightness(0.9);
+    opacity: 0; /* Fade in when loaded via JS */
 }
 
 .gallery-item:hover img {

@@ -12,6 +12,9 @@
     <!-- Styles -->
     <link rel="stylesheet" href="style.css">
     
+    <!-- Performance Optimization: Preload Hero Image -->
+    <link rel="preload" as="image" href="images/hero.png" fetchpriority="high">
+    
     <!-- Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     
@@ -212,60 +215,146 @@
         
         <div class="grid gallery-grid">
             <div class="gallery-item reveal span-2">
-                <img src="Assest/IMG_20231106_160650_768.jpg" alt="Luxury Estate Driveway">
+                <img src="Assest/IMG_20231106_160650_768.jpg" alt="Luxury Estate Driveway" loading="lazy" decoding="async" width="800" height="600">
                 <div class="gallery-overlay">
                     <h4>Luxury Estate Driveway</h4>
                     <p>Premium Hexagonal Paving & Landscaping</p>
                 </div>
             </div>
             <div class="gallery-item reveal">
-                <img src="Assest/20251016_105145.jpg" alt="Geometric Paving Detail">
+                <img src="Assest/20251016_105145.jpg" alt="Geometric Paving Detail" loading="lazy" decoding="async" width="400" height="300">
                 <div class="gallery-overlay">
                     <h4>Geometric Precision</h4>
                     <p>Interlocking Pattern Mastery</p>
                 </div>
             </div>
             <div class="gallery-item reveal">
-                <img src="Assest/IMG_20240109_111853_173.jpg" alt="Modern Home Entrance">
+                <img src="Assest/IMG_20240109_111853_173.jpg" alt="Modern Home Entrance" loading="lazy" decoding="async" width="400" height="300">
                 <div class="gallery-overlay">
                     <h4>Modern Residence</h4>
                     <p>Clean Finished Driveway</p>
                 </div>
             </div>
             <div class="gallery-item reveal span-2">
-                <img src="Assest/20251215_165151.jpg" alt="Large Scale Commercial Project">
+                <img src="Assest/20251215_165151.jpg" alt="Large Scale Commercial Project" loading="lazy" decoding="async" width="800" height="600">
                 <div class="gallery-overlay">
                     <h4>Commercial Paving</h4>
                     <p>Heavy-Duty Compound Transformation</p>
                 </div>
             </div>
             <div class="gallery-item reveal">
-                <img src="Assest/IMG_20240109_111831_036.jpg" alt="Estate Driveway Project">
+                <img src="Assest/IMG_20240109_111831_036.jpg" alt="Estate Driveway Project" loading="lazy" decoding="async" width="400" height="300">
                 <div class="gallery-overlay">
                     <h4>Estate Driveway</h4>
                     <p>Long-form Pattern Execution</p>
                 </div>
             </div>
             <div class="gallery-item reveal">
-                <img src="Assest/20251209_123158.jpg" alt="Full Compound Paving">
+                <img src="Assest/20251209_123158.jpg" alt="Full Compound Paving" loading="lazy" decoding="async" width="400" height="300">
                 <div class="gallery-overlay">
                     <h4>Full Compound</h4>
                     <p>Neat Residential Finishing</p>
                 </div>
             </div>
             <div class="gallery-item reveal">
-                <img src="Assest/20250607_164600.jpg" alt="Landscaping with Planters">
+                <img src="Assest/20250607_164600.jpg" alt="Garden Landscaping" loading="lazy" decoding="async" width="400" height="300">
                 <div class="gallery-overlay">
                     <h4>Garden Landscaping</h4>
                     <p>Integrated Stone & Planter Design</p>
                 </div>
             </div>
             <div class="gallery-item reveal">
-                <img src="Assest/IMG_20240109_111656_334.jpg" alt="Multi-tone Paving Design">
+                <img src="Assest/IMG_20240109_111656_334.jpg" alt="Multi-tone Paving" loading="lazy" decoding="async" width="400" height="300">
                 <div class="gallery-overlay">
                     <h4>Multi-tone Design</h4>
                     <p>Vibrant Hexagonal Finishing</p>
                 </div>
+            </div>
+            
+            <!-- Additional Hidden Items -->
+            <div class="gallery-item reveal hidden-gallery-item">
+                <img src="Assest/20250607_164555.jpg" alt="Landscape Precision" loading="lazy" decoding="async" width="400" height="300">
+                <div class="gallery-overlay">
+                    <h4>Landscape Precision</h4>
+                    <p>Garden Edge Finishing</p>
+                </div>
+            </div>
+            <div class="gallery-item reveal hidden-gallery-item">
+                <img src="Assest/20250607_164607.jpg" alt="Compound Excellence" loading="lazy" decoding="async" width="400" height="300">
+                <div class="gallery-overlay">
+                    <h4>Compound Excellence</h4>
+                    <p>Large Scale Residential Work</p>
+                </div>
+            </div>
+            <div class="gallery-item reveal hidden-gallery-item">
+                <img src="Assest/20250729_112142.jpg" alt="Heavy-Duty Driveway" loading="lazy" decoding="async" width="400" height="300">
+                <div class="gallery-overlay">
+                    <h4>Heavy-Duty Driveway</h4>
+                    <p>Commercial Grade Paving</p>
+                </div>
+            </div>
+            <div class="gallery-item reveal hidden-gallery-item">
+                <img src="Assest/20250729_112158.jpg" alt="Business Precinct" loading="lazy" decoding="async" width="400" height="300">
+                <div class="gallery-overlay">
+                    <h4>Business Precinct</h4>
+                    <p>Clean Parking Area Finish</p>
+                </div>
+            </div>
+            <div class="gallery-item reveal hidden-gallery-item">
+                <img src="Assest/20250808_163620.jpg" alt="Geometric Patterns" loading="lazy" decoding="async" width="400" height="300">
+                <div class="gallery-overlay">
+                    <h4>Geometric Patterns</h4>
+                    <p>Custom Brick Layouts</p>
+                </div>
+            </div>
+            <div class="gallery-item reveal hidden-gallery-item">
+                <img src="Assest/20251209_123136.jpg" alt="Private Pathway" loading="lazy" decoding="async" width="400" height="300">
+                <div class="gallery-overlay">
+                    <h4>Private Pathway</h4>
+                    <p>Neat Walking Surfaces</p>
+                </div>
+            </div>
+            <div class="gallery-item reveal hidden-gallery-item">
+                <img src="Assest/IMG_20231106_160633_610.jpg" alt="Elite Estate" loading="lazy" decoding="async" width="400" height="300">
+                <div class="gallery-overlay">
+                    <h4>Elite Estate</h4>
+                    <p>Full Paving Transformation</p>
+                </div>
+            </div>
+            <div class="gallery-item reveal hidden-gallery-item">
+                <img src="Assest/IMG_20231122_113707_603.jpg" alt="Corporate Entry" loading="lazy" decoding="async" width="400" height="300">
+                <div class="gallery-overlay">
+                    <h4>Corporate Entry</h4>
+                    <p>Professional Commercial Finish</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 50px;" class="reveal">
+            <button id="view-more-btn" class="btn btn-outline">
+                <i data-lucide="grid"></i> View All Projects
+            </button>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="section bg-surface">
+        <div class="container grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); text-align: center;">
+            <div class="reveal">
+                <div class="stat-number" data-target="500">0</div>
+                <p style="color: var(--primary); font-weight: 700; text-transform: uppercase;">Projects Completed</p>
+            </div>
+            <div class="reveal">
+                <div class="stat-number" data-target="10">0</div>
+                <p style="color: var(--primary); font-weight: 700; text-transform: uppercase;">Years Experience</p>
+            </div>
+            <div class="reveal">
+                <div class="stat-number" data-target="100">0</div>
+                <p style="color: var(--primary); font-weight: 700; text-transform: uppercase;">% Satisfaction</p>
+            </div>
+            <div class="reveal">
+                <div class="stat-number" data-target="15">0</div>
+                <p style="color: var(--primary); font-weight: 700; text-transform: uppercase;">Skilled Artisans</p>
             </div>
         </div>
     </section>
