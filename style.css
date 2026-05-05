@@ -8,22 +8,25 @@
 :root {
     /* Brand Colors */
     --primary: #F5A623;
+    --primary-light: #FFC05A;
     --primary-dark: #D98E10;
-    --bg-dark: #121212;
-    --bg-surface: #1A1A1A;
-    --bg-card: #2B2B2B;
-    --text-main: #F7F7F5;
-    --text-muted: #A0A0A0;
+    --bg-dark: #0A0A0A;
+    --bg-surface: #141414;
+    --bg-card: #1E1E1E;
+    --text-main: #FFFFFF;
+    --text-muted: #B0B0B0;
     --accent-orange: #F29A1F;
     
     /* Spacing & Sizing */
-    --section-padding: 100px 5%;
-    --section-padding-mobile: 60px 20px;
-    --border-radius: 12px;
-    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --section-padding: 140px 10%;
+    --section-padding-mobile: 100px 20px;
+    --border-radius: 20px;
+    --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     
-    /* Shadows */
-    --shadow-premium: 0 20px 40px rgba(0, 0, 0, 0.4);
+    /* Shadows & Glass */
+    --shadow-premium: 0 20px 50px rgba(0, 0, 0, 0.5);
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.08);
 }
 
 * {
@@ -145,19 +148,21 @@ nav {
     position: fixed;
     top: 0;
     width: 100%;
-    padding: 20px 5%;
+    padding: 30px 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 1000;
     transition: var(--transition);
+    background: linear-gradient(to bottom, rgba(10, 10, 10, 0.8), transparent);
 }
 
 nav.scrolled {
-    background-color: rgba(18, 18, 18, 0.95);
-    backdrop-filter: blur(10px);
+    background: rgba(10, 10, 10, 0.9);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     padding: 15px 5%;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid var(--glass-border);
 }
 
 .logo {
@@ -165,33 +170,30 @@ nav.scrolled {
     align-items: center;
     gap: 15px;
     z-index: 1001;
+    flex-shrink: 0;
 }
 
 .logo-circle {
-    height: 80px; /* Bada karna (Make it large enough but balanced) */
-    width: 80px;
+    height: 50px; 
+    width: 50px;
     object-fit: contain;
-    border-radius: 50%; /* Circle */
-    border: 3px solid var(--primary);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-    background-color: #1A1A1A; /* Matches nav background */
+    border-radius: 50%;
+    border: 2px solid var(--primary);
+    background-color: #1A1A1A;
     transition: var(--transition);
 }
 
 .logo:hover .logo-circle {
-    transform: scale(1.1) rotate(5deg);
-    border-color: #fff;
+    transform: scale(1.05);
 }
 
 .brand-name {
     font-family: 'Montserrat', sans-serif;
-    font-weight: 800;
-    font-size: 1.4rem;
-    color: var(--primary);
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--text-main);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    line-height: 1.1;
-    max-width: 200px; /* Force word wrap if needed for balance */
+    letter-spacing: 0.1em;
 }
 
 @media (max-width: 768px) {
@@ -208,6 +210,14 @@ nav.scrolled {
 .nav-links {
     display: flex;
     gap: 40px;
+    align-items: center;
+}
+
+.nav-links a {
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
 }
 
 .nav-links a:hover {
@@ -226,27 +236,44 @@ nav.scrolled {
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    padding: 0 10%;
+    padding: 120px 10% 0;
+    align-items: flex-start;
 }
 
 .hero-content {
-    max-width: 800px;
+    max-width: 850px;
+}
+
+.hero-badge {
+    display: inline-block;
+    padding: 8px 16px;
+    background: rgba(245, 166, 35, 0.1);
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 20px;
 }
 
 .hero h1 {
-    font-size: 4.5rem;
-    line-height: 1.1;
+    font-size: 3.5rem;
+    line-height: 1.2;
     margin-bottom: 20px;
-    background: linear-gradient(to bottom, #fff 50%, var(--primary));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
 }
 
 .hero p {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     color: var(--text-muted);
     margin-bottom: 40px;
     max-width: 600px;
+    line-height: 1.6;
 }
 
 .cta-group {
@@ -256,47 +283,67 @@ nav.scrolled {
 
 /* Trust Strip */
 .trust-strip {
-    background-color: var(--bg-surface);
-    padding: 30px 5%;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: #0F0F0F;
+    padding: 40px 10%;
+    border-bottom: 1px solid var(--glass-border);
 }
 
 .trust-inner {
     display: flex;
     justify-content: space-between;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
+    flex-wrap: wrap;
+    gap: 30px;
 }
 
 .trust-item {
     display: flex;
     align-items: center;
-    gap: 15px;
-    font-weight: 600;
+    gap: 12px;
+    font-weight: 700;
     text-transform: uppercase;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+}
+
+.trust-item i {
     color: var(--primary);
+    width: 20px;
 }
 
 /* Services */
 .services-grid {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 992px) {
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .service-card {
     background-color: var(--bg-card);
     border-radius: var(--border-radius);
     transition: var(--transition);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    overflow: hidden; /* For image corners */
+    border: 1px solid var(--glass-border);
+    overflow: hidden;
     display: flex;
     flex-direction: column;
 }
 
 .service-card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-12px);
     border-color: var(--primary);
-    background-color: var(--bg-surface);
+    background-color: #252525;
 }
 
 .service-img {
@@ -365,7 +412,20 @@ nav.scrolled {
 /* Gallery */
 .gallery-grid {
     grid-template-columns: repeat(3, 1fr);
-    grid-auto-rows: 300px;
+    grid-auto-rows: 400px;
+}
+
+@media (max-width: 992px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 300px;
+    }
 }
 
 .gallery-item {
@@ -429,10 +489,43 @@ nav.scrolled {
     margin-bottom: 5px;
 }
 
-.gallery-overlay p {
+/* Form Styling */
+.contact-form {
+    background: var(--bg-card);
+    padding: 40px;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-premium);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group input, .form-group textarea {
+    width: 100%;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
     color: #fff;
-    font-size: 0.9rem;
-    font-weight: 500;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.form-group input:focus, .form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.contact-info-list .feature-item {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid var(--glass-border);
+    margin-bottom: 20px;
 }
 
 /* Footer CTAs */
@@ -454,82 +547,86 @@ nav.scrolled {
     background: radial-gradient(circle, rgba(245, 166, 35, 0.1) 0%, transparent 70%);
 }
 
-/* Mobile Sticky Bar */
-.mobile-cta-bar {
-    display: none;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background: rgba(18, 18, 18, 0.9);
-    backdrop-filter: blur(10px);
-    padding: 15px;
-    z-index: 2000;
-    box-shadow: 0 -10px 30px rgba(0,0,0,0.5);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
 @media (max-width: 768px) {
     .nav-links, .desktop-only { display: none; }
     
     nav {
-        padding: 15px 20px;
-        background-color: rgba(18, 18, 18, 0.95);
-        backdrop-filter: blur(10px);
+        padding: 10px 15px;
+        background: rgba(10, 10, 10, 0.95);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
     }
     
     .logo-circle {
-        height: 50px;
-        width: 50px;
+        height: 40px;
+        width: 40px;
+        border-width: 1px;
     }
     
     .brand-name {
-        font-size: 0.9rem;
-        max-width: 140px;
+        font-size: 0.85rem;
+        letter-spacing: 0.05em;
+        max-width: none;
+        white-space: nowrap;
     }
 
     .hero {
-        padding: 0 20px;
-        justify-content: center;
+        padding: 120px 20px 60px; /* More top padding to clear header */
+        justify-content: flex-start;
         text-align: center;
         align-items: center;
+        min-height: 100vh;
+    }
+
+    .hero-badge {
+        font-size: 0.7rem;
+        padding: 6px 12px;
+        margin-bottom: 15px;
     }
 
     .hero h1 { 
-        font-size: 2.2rem; 
-        line-height: 1.2;
-        margin-bottom: 20px;
+        font-size: 2rem; 
+        line-height: 1.1;
+        margin-bottom: 15px;
     }
     
     .hero p {
-        font-size: 1rem;
+        font-size: 0.95rem;
         margin-bottom: 30px;
     }
 
     .cta-group { 
         flex-direction: column; 
         width: 100%; 
-        gap: 12px;
+        gap: 10px;
     }
     
     .btn { 
         width: 100%; 
         justify-content: center; 
-        padding: 14px 24px;
-        font-size: 0.95rem;
+        padding: 14px 20px;
+        font-size: 0.9rem;
     }
 
-    .trust-inner { flex-direction: column; gap: 15px; text-align: center; }
+    .section {
+        padding: 80px 20px;
+    }
+
+    .hero-content {
+        width: 100%;
+    }
+}
+
+.trust-inner { flex-direction: column; gap: 15px; text-align: center; }
     .trust-item { justify-content: center; }
     .split-section { grid-template-columns: 1fr; gap: 40px; }
     .gallery-grid { 
         grid-template-columns: 1fr; 
-        grid-auto-rows: 250px; 
-        gap: 15px;
+        grid-auto-rows: 300px; 
+        gap: 20px;
     }
-    .gallery-item.span-2 { grid-column: span 1; }
-    .gallery-item.row-2 { grid-row: span 1; }
-    .mobile-cta-bar { display: flex; gap: 10px; }
-    body { padding-bottom: 80px; }
+    
+    body { padding-bottom: 0; }
 }
 
 /* Animations */
@@ -635,35 +732,6 @@ nav.scrolled {
     font-weight: 600;
 }
 
-/* Floating WhatsApp Button (Desktop) */
-.floating-whatsapp {
-    position: fixed;
-    bottom: 40px;
-    right: 40px;
-    width: 70px;
-    height: 70px;
-    background-color: #25D366;
-    color: #fff;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 35px;
-    box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
-    z-index: 1500;
-    transition: var(--transition);
-}
-
-.floating-whatsapp:hover {
-    transform: scale(1.1) translateY(-5px);
-    background-color: #20BA5A;
-}
-
-@media (max-width: 768px) {
-    .floating-whatsapp {
-        display: none; /* Already have mobile bar */
-    }
-    
     .lightbox-content {
         width: 95%;
     }

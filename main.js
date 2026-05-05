@@ -137,15 +137,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     counters.forEach(counter => counterObserver.observe(counter));
 
-    // 8. Floating WhatsApp (Dynamic Creation for better control)
-    const waFloat = document.createElement('a');
-    waFloat.href = "https://wa.me/260973316286";
-    waFloat.className = "floating-whatsapp desktop-only";
-    waFloat.innerHTML = '<i data-lucide="message-circle"></i>';
-    waFloat.target = "_blank";
-    document.body.appendChild(waFloat);
-    if (typeof lucide !== 'undefined') lucide.createIcons();
-
     // 9. Hero Parallax
     const hero = document.querySelector('.hero');
     window.addEventListener('scroll', () => {
@@ -154,4 +145,26 @@ document.addEventListener('DOMContentLoaded', () => {
             hero.style.backgroundPositionY = offset * 0.5 + 'px';
         }
     });
+    // 10. Contact Form Simulation
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = contactForm.querySelector('button');
+            const originalText = btn.innerText;
+            btn.innerText = 'Sending...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                btn.innerText = 'Message Sent!';
+                btn.style.backgroundColor = '#25D366';
+                contactForm.reset();
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                    btn.style.backgroundColor = '';
+                    btn.disabled = false;
+                }, 3000);
+            }, 1500);
+        });
+    }
 });
